@@ -19,11 +19,22 @@ class App extends Component {
     }
   }
   render() {
-    return (
+    console.log(this.state.polls)
+    return (    
       <div className="App">
-        {this.state.polls.map(item => (
-          <div key={item.id}>
-          {item.poll_text}
+        {this.state.polls.map(poll => (
+          <div key={poll.id}>
+          {poll.poll_text}
+          {poll.questions.map(question =>(
+            <div key ={question.id}>
+            {question.question_text}
+            {question.choices.map(choice=>(
+              <div key ={choice.id}>
+              {choice.choice_text}
+              </div>
+            ))}
+            </div>
+          ))}
           </div>
         ))}
       </div>
