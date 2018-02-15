@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
 class App extends Component {
   state = {
     polls: []
@@ -19,27 +20,29 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.state.polls)
     return (    
       <div className="App">
         {this.state.polls.map(poll => (
-          <div key={poll.id}>
-          {poll.poll_text}
-          {poll.questions.map(question =>(
-            <div key ={question.id}>
-            {question.question_text}
-            {question.choices.map(choice=>(
-              <div key ={choice.id}>
-              {choice.choice_text}
+          <div>
+          <div className="row" key={poll.id}>
+            <div className="col s10 offset-s1">
+              <div className="card blue-grey darken-1">
+                <div className="card-content white-text">
+                  <span className="card-title">{poll.poll_text}</span>
+                  <p>{poll.pub_date}</p>
+                </div>
+                <div className="card-action"> 
+                  <button type="button" className="waves-effect waves-light btn">Open</button>
+                </div>
               </div>
-            ))}
             </div>
-          ))}
+          </div>
           </div>
         ))}
       </div>
     );
   }
 }
+
 
 export default App;
