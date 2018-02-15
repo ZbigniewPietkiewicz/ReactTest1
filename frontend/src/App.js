@@ -7,6 +7,7 @@ class App extends Component {
   state = {
     polls: []
   }
+
   async componentDidMount(){
     try{
       const res = await fetch('http://127.0.0.1:8000/api/');
@@ -19,6 +20,7 @@ class App extends Component {
       console.log(e);
     }
   }
+  
   render() {
     return (    
       <div className="App">
@@ -37,12 +39,45 @@ class App extends Component {
               </div>
             </div>
           </div>
+          <Cap id={poll.id}/>
           </div>
         ))}
+        
       </div>
     );
   }
 }
 
+class Cap extends Component{
+  state = {
+    questions:[]
+  }
+  async componentWillMount(){
+    try{
+      const res = await fetch('http://127.0.0.1:8000/api/' + this.props.id +'/');
+      const poll = await res.json();
+      this.setState({
+        poll
+      });
+      console.log(this.state)
+    }catch(e)
+    {
+      console.log(e);
+    }
+  }
+
+  render(){
+    return(
+      <div className="cap" key={"pd" + this.props.id}>
+        {this.state.questions.fuck.map(question =>(
+          <div>
+            {question.id}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+}
 
 export default App;
